@@ -5,6 +5,10 @@ pipeline {
         // Define global environment variables if needed
         BRANCH = 'main' // Change branch if needed
         REPO_URL = 'https://github.com/mdabraralam/impart-buddies-sample-01.git'
+    } 
+    
+    tools {
+        maven 'Maven 3.8.6' // Use the exact name defined in Jenkins
     }
 
     stages {
