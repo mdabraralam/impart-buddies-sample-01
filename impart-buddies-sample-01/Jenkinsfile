@@ -26,14 +26,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building project...'
-                sh 'mvn -f impart-buddies-sample-01/pom.xml clean install' // Or use 'mvn clean install' for Maven
+                bat 'mvn -f impart-buddies-sample-01/pom.xml clean install' // Or use 'mvn clean install' for Maven
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'mvn test' // Or 'mvn test' for Maven
+                bat 'mvn test' // Or 'mvn test' for Maven
             }
         }
 
