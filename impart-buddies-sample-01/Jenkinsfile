@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    environment {
+        // Define global environment variables if needed
+        BRANCH = 'main' // Change branch if needed
+        REPO_URL = 'https://github.com/mdabraralam/impart-buddies-sample-01.git'
+    }
+
+    stages {
+        
+        stage('Checkout') {
+            steps {
+                echo 'Checking out code...'
+                checkout([$class: 'GitSCM', 
+                    branches: [[name: "*/${BRANCH}"]],
+                    userRemoteConfigs: [[url: "${REPO_URL}"]]
+                ])
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building project...'
+                sh 'mvn -f impart-buddies-sample-01/pom.xml clean install' // Or use 'mvn clean install' for Maven
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'mvn test' // Or 'mvn test' for Maven
+            }
+        }
+
+    }
+
+    post {
+        always {
+            echo 'Pipeline execution completed.'
+        }
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed. Please check the logs.'
+        }
+    }
+}
