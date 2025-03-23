@@ -14,10 +14,10 @@
         <jacoco.version>0.8.8</jacoco.version>
     </properties>
 	<groupId>com.impart.bodies.web</groupId>
-	<artifactId>impart.bodies</artifactId>
+	<artifactId>impart-bodies-sample-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>impart.bodies</name>
-	<description>Demo project for impart bodies</description>
+	<name>impart-bodies-sample-service</name>
+	<description>Project for impart bodies Sample Project</description>
 	<url/>
 	<licenses>
 		<license/>
