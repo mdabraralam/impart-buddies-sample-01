@@ -25,27 +25,34 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                echo 'Running tests...'
-                bat 'mvn -f impart-buddies-sample-01/pom.xml test' // Or 'mvn test' for Maven
-            }
-        }
+        // stage('Test') {
+        //     steps {
+        //         echo 'Running tests...'
+        //         bat 'mvn -f impart-buddies-sample-01/pom.xml test' // Or 'mvn test' for Maven
+        //     }
+        // }
         stage('Build') {
             steps {
                 echo 'Building project...'
-                bat 'mvn -f impart-buddies-sample-01/pom.xml clean install' // Or use 'mvn clean install' for Maven
+                bat '''
+                    cd impart-buddies-sample-01
+                    dir
+                    echo "Building project..."
+                    mvn clean install
+                '''
+                //bat 'mvn -f impart-buddies-sample-01/pom.xml clean install' // Or use 'mvn clean install' for Maven
             }
         } 
-        stage('Docker Build') {
-            steps {
-                dir('eureka-server') {
-                    echo 'Building Docker Image...'
-                    // Docker build command using bat
-                    bat "docker build -f impart-buddies-sample-01/Dockerfile -t %DOCKER_IMAGE%:%IMAGE_TAG% --build-arg JAR_VERSION=%IMAGE_TAG% impart-buddies-sample-01/."
-                }
-            }
-        }
+        // stage('Docker Build') {
+        //     steps {
+        //         dir('eureka-server') {
+        //             echo 'Building Docker Image...'
+        //             cd impart-buddies-sample-01
+        //             // Docker build command using bat
+        //             bat "docker build -f impart-buddies-sample-01/Dockerfile -t %DOCKER_IMAGE%:%IMAGE_TAG% --build-arg JAR_VERSION=%IMAGE_TAG% impart-buddies-sample-01/."
+        //         }
+        //     }
+        // }
     }
 
     post {
