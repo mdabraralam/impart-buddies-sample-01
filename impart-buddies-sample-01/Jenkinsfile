@@ -42,7 +42,7 @@ pipeline {
                 dir('eureka-server') {
                     echo 'Building Docker Image...'
                     // Docker build command using bat
-                    bat "docker build -t %DOCKER_IMAGE%:%IMAGE_TAG% --build-arg JAR_VERSION=%IMAGE_TAG% -f impart-buddies-sample-01/."
+                    bat "docker build -t %DOCKER_IMAGE%:%IMAGE_TAG% --build-arg JAR_VERSION=%IMAGE_TAG% impart-buddies-sample-01/."
                 }
             }
         }
