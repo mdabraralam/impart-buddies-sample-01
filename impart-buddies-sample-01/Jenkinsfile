@@ -43,6 +43,16 @@ pipeline {
                 //bat 'mvn -f impart-buddies-sample-01/pom.xml clean install' // Or use 'mvn clean install' for Maven
             }
         } 
+        stage('Build Docker Image') {
+            steps {
+                bat '''
+                    cd impart-buddies-sample-01
+                    dir
+                    echo "Building docker image..."
+                    bat "docker build -f Dockerfile -t %DOCKER_IMAGE%:%IMAGE_TAG% --build-arg JAR_VERSION=%IMAGE_TAG% ."
+                '''
+            }
+        }
         // stage('Docker Build') {
         //     steps {
         //         dir('eureka-server') {
