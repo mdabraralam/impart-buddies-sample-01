@@ -71,8 +71,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-login', 
-                                                  usernameVariable: 'mdabraralam', 
-                                                  passwordVariable: 'dckr_pat_4yHJVeYZCtk48Tlo-RqH03VZxUE')]) {
+                                                  usernameVariable: 'DOCKER_USERNAME', 
+                                                  passwordVariable: 'DOCKER_PASSWORD')]) {
                     bat '''
                         echo "Logging into Docker Hub..."
                         docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%
