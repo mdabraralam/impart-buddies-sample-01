@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define global environment variables if needed
-        BRANCH = 'main' // Change branch if needed
+        BRANCH = 'main' // Change branch if  needed
         REPO_URL = 'https://github.com/mdabraralam/impart-buddies-sample-01.git'
         DOCKER_IMAGE = 'mdabraralam/impart-bodies-sample-service'
         IMAGE_TAG = "0.0.1-SNAPSHOT"
@@ -74,10 +74,10 @@ pipeline {
                                                   usernameVariable: 'DOCKER_USERNAME', 
                                                   passwordVariable: 'DOCKER_PASSWORD')]) {
                     bat '''
-                        echo "Logging into Docker Hub..."
+                        echo "Logging into Docker Hub...."
                         docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%
 
-                        echo "Pushing Docker image to repository..."
+                        echo "Pushing Docker image to repository...."
                         docker push %DOCKER_IMAGE%:%IMAGE_TAG%
                     '''
                 }
